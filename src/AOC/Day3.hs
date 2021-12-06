@@ -6,10 +6,12 @@ module AOC.Day3
     , solutionPart2
     ) where
 
-import           Data.List    as L hiding (words)
-import           Data.Text    as T hiding (words)
-import qualified Data.Text.IO as TI
-import           Prelude      as P hiding (words)
+import           Data.List             as L hiding (words)
+import           Data.Text             as T hiding (words)
+import qualified Data.Text.IO          as TI
+import qualified Data.Text.Lazy.IO     as TLI
+import           Formatting
+import           Prelude               as P hiding (words)
 
 -- |
 -- This function is highly unsafe. If `n` cannot 0-index into `ts`, then we
@@ -93,6 +95,9 @@ getWords = T.lines <$> TI.readFile "./data/input3"
 bitsPerWord :: [Text] -> Int
 bitsPerWord w = T.length $ P.head w
 
+outputFormat :: Format r (Int -> r)
+outputFormat = "The (multiplied) rating is " % int % " imaginary units :)"
+
 solutionPart1 :: IO ()
 solutionPart1 = do
     words <- getWords
@@ -102,7 +107,7 @@ solutionPart1 = do
     let lessFrequentBits = T.map flipBit moreFrequentBits
     let moreFrequentNum = bitsToNum moreFrequentBits
     let lessFrequentNum = bitsToNum lessFrequentBits
-    print $ moreFrequentNum * lessFrequentNum
+    TLI.putStrLn $ format outputFormat $ moreFrequentNum * lessFrequentNum
 
 solutionPart2 :: IO ()
 solutionPart2 = do
@@ -110,4 +115,4 @@ solutionPart2 = do
     let bpw = bitsPerWord words
     let oxygen = findOxygenRating 0 bpw words
     let co2 = findCO2Rating 0 bpw words
-    print $ oxygen * co2
+    TLI.putStrLn $ format outputFormat $ oxygen * co2

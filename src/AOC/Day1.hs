@@ -6,9 +6,8 @@ module AOC.Day1
     ) where
 
 import           Data.List
-import qualified Data.Text.Lazy.IO     as T
+import qualified Data.Text.Lazy.IO as T
 import           Formatting
-import           Formatting.Formatters ()
 
 outputFormat :: Format r (Int -> r)
 outputFormat = "There are " % int % " increasing measurements."

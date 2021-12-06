@@ -28,6 +28,7 @@ library
       AOC.Day1
       AOC.Day2
       AOC.Day3
+      AOC.Day4
   other-modules:
       Paths_advent_of_code
   hs-source-dirs:

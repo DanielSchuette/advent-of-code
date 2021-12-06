@@ -7,13 +7,12 @@ module AOC.Day2
     ) where
 
 import           Data.List
-import           Data.Text             as T hiding (foldl', map)
-import qualified Data.Text.IO          as TI
-import qualified Data.Text.Lazy.IO     as TLI
-import qualified Data.Text.Read        as TR
+import           Data.Text         as T hiding (foldl', map)
+import qualified Data.Text.IO      as TI
+import qualified Data.Text.Lazy.IO as TLI
+import qualified Data.Text.Read    as TR
 import           Formatting
-import           Formatting.Formatters ()
-import           Prelude               as P hiding (lines)
+import           Prelude           as P hiding (lines)
 
 data Direction
     = Forward Int
