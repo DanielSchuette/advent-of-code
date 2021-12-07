@@ -4,6 +4,7 @@ import qualified AOC.Day1 as D1 (solutionPart1, solutionPart2)
 import qualified AOC.Day2 as D2 (solutionPart1, solutionPart2)
 import qualified AOC.Day3 as D3 (solutionPart1, solutionPart2)
 import qualified AOC.Day4 as D4 (solutionPart1, solutionPart2)
+import qualified AOC.Day5 as D5 (solutionPart1, solutionPart2)
 
 solutions :: [IO ()]
 solutions =
@@ -15,6 +16,8 @@ solutions =
     , D3.solutionPart2
     , D4.solutionPart1
     , D4.solutionPart2
+    , D5.solutionPart1
+    , D5.solutionPart2
     ]
 
 main :: IO ()
