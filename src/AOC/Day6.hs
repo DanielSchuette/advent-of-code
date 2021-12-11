@@ -15,6 +15,12 @@ import qualified Data.Text.Read    as TR
 import           Formatting
 import           Prelude           as P
 
+newtype Fish =
+    Fish
+        { age :: Int
+        }
+    deriving (Show)
+
 -- | We format our solution as follows:
 outputFormat :: Format r (Int -> r)
 outputFormat = "After 80 days, there are " % int % " little lanternfish."
