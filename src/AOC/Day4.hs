@@ -7,6 +7,7 @@ module AOC.Day4
     ) where
 
 import           Data.List         as L
+import           Data.Text         (Text)
 import qualified Data.Text         as T
 import qualified Data.Text.IO      as TI
 import qualified Data.Text.Lazy.IO as TLI
@@ -19,16 +20,14 @@ type Board = [[Int]]
 outputFormat :: Format r (Int -> r)
 outputFormat = "The final, winning score is " % int % " points."
 
--- |
--- We'll fail miserably if `length ts` isn't a multiple of 5.
-makeBoards :: [T.Text] -> [Board]
+-- | We'll fail miserably if `length ts` isn't a multiple of 5.
+makeBoards :: [Text] -> [Board]
 makeBoards [] = []
 makeBoards ts = f ts : makeBoards (drop 5 ts)
   where
     f ts = map (map parseInt . filter (/= "") . T.splitOn " ") $ take 5 ts
 
--- |
--- `runGame` represents the main loop of the game, testing for a win condition
+-- | `runGame` represents the main loop of the game, testing for a win condition
 -- on every round and returning the winning score if possible. Instead of
 -- folding, we take the (probably more intuitive) recursive route.
 runGame :: [Board] -> [Int] -> Int -> Int
@@ -39,8 +38,7 @@ runGame boards draws lastDraw =
   where
     curDraw = head draws
 
--- |
--- Here, we run the game and filter for those boards that already won until
+-- | Here, we run the game and filter for those boards that already won until
 -- there is only one board left. That particular board is then used to
 -- determine the final score (the "losing score").
 runGameUntilLosing :: [Board] -> [Int] -> Int -> Int
@@ -67,8 +65,7 @@ runGameUntilLosing boards draws lastDraw =
   where
     curDraw = head draws
 
--- |
--- Marking a board means replacing all occurrences of a certain integer with
+-- | Marking a board means replacing all occurrences of a certain integer with
 -- `-1`. `getWinningBoard` relies on that convention, too.
 markBoards :: [Board] -> Int -> [Board]
 markBoards b m = map (markBoard m) b
@@ -96,7 +93,7 @@ isWinning b = rowWinning b || columnWinning b
 calcWinningScore :: Board -> Int -> Int
 calcWinningScore b m = (*) m $ sum $ filter (/= -1) $ concat b
 
-parseInt :: T.Text -> Int
+parseInt :: Text -> Int
 parseInt t = f $ TR.decimal t
   where
     f (Right (x, _)) = x :: Int
@@ -105,10 +102,10 @@ parseInt t = f $ TR.decimal t
         "AOC.Day4.solutionPart1: unable to parse int from `" ++
         T.unpack t ++ "'"
 
-getDraws :: [T.Text] -> [Int]
+getDraws :: [Text] -> [Int]
 getDraws = map parseInt . T.splitOn "," . P.head
 
-getBoards :: [T.Text] -> [Board]
+getBoards :: [Text] -> [Board]
 getBoards = makeBoards . P.filter (\x -> x /= "\n" && x /= "") . P.tail
 
 solutionPart1 :: IO ()

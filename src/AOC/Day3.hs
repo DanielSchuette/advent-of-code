@@ -6,15 +6,14 @@ module AOC.Day3
     , solutionPart2
     ) where
 
-import           Data.List             as L hiding (words)
-import           Data.Text             as T hiding (words)
-import qualified Data.Text.IO          as TI
-import qualified Data.Text.Lazy.IO     as TLI
+import           Data.List         as L hiding (words)
+import           Data.Text         as T hiding (words)
+import qualified Data.Text.IO      as TI
+import qualified Data.Text.Lazy.IO as TLI
 import           Formatting
-import           Prelude               as P hiding (words)
+import           Prelude           as P hiding (words)
 
--- |
--- This function is highly unsafe. If `n` cannot 0-index into `ts`, then we
+-- | This function is highly unsafe. If `n` cannot 0-index into `ts`, then we
 -- crash with an exception.
 mostFrequent :: [Text] -> Int -> Char
 mostFrequent ts n
@@ -22,8 +21,7 @@ mostFrequent ts n
     | isMostFrequent ts n '0' = '0'
     | otherwise = error "AOC.Day3.mostFrequent: got chars other than `0' or `1'"
 
--- |
--- `isMostFrequent` tests whether char `c` occurs _at least_ as often as all
+-- | `isMostFrequent` tests whether char `c` occurs _at least_ as often as all
 -- other chars in column `n` of the input `ts`. Unsafe in a sense that an
 -- invalid column index will crash as well as malformed strings.
 -- It is important to note that it is absolutely possible that both `0` and `1`
@@ -44,8 +42,7 @@ isMostFrequent ts n c
                     ts
          in 2 * columnSum >= P.length ts
 
--- |
--- `findOxygenRating` and `findCO2Rating` are highly redundant. Currently, I
+-- | `findOxygenRating` and `findCO2Rating` are highly redundant. Currently, I
 -- don't see a way to pull out the logic that differentiates them.
 findOxygenRating :: Int -> Int -> [Text] -> Int
 findOxygenRating n m ts
@@ -77,8 +74,7 @@ flipBit c
     | c == '0' = '1'
     | otherwise = error "AOC.Day3.flipBit: invalid input"
 
--- |
--- "1000101" counterintuitively assumes the most significant bit to be to the
+-- | "1000101" counterintuitively assumes the most significant bit to be to the
 -- right, so we can just fold up from the left.
 bitsToNum :: Text -> Int
 bitsToNum =

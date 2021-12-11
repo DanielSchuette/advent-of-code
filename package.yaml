@@ -24,6 +24,7 @@ dependencies:
 - formatting
 - text
 - bytestring
+- containers
 
 library:
   source-dirs: src
